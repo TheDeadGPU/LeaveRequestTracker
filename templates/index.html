@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Request Form</title>
+</head>
+<body>
+    <h1>Leave Request Form</h1>
+    <form method="POST" action="/">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required><br>
+
+        <label for="hours">Hours:</label>
+        <input type="number" id="hours" name="hours" required oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 2);"><br>
+
+        <label for="leave_type">Leave Type:</label>
+        <select id="leave_type" name="leave_type"><option value="">-- Select --</option><option value="SIC">Sick Leave</option><option value="VAC">Vacation</option><option value="PER">Personal</option><option value="CTT">Comp Time Taken</option><option value="PLB">Paid Leave Bank</option><option value="JUR">Jury Duty</option><option value="UA">Union Activity</option><option value="FUR">Furlough (HR Approval Required)</option><option value="NOP">Unpaid Leave</option><option value="CTE">Comp Time Earned - Straight</option><option value="CTO">Comp Time Earned - 1.5x</option><option value="OT">Overtime Approval Request</option><option value="CSC">CSC Exam Leave (HR Approval Required)</option></select>
+        
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Leave Requests:</h2>
+    <ul>
+        {% for request in leave_requests %}
+            <li>{{ request.name }} - {{ request.date }} ({{ request.leave_type }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
