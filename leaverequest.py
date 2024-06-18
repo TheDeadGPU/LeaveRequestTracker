@@ -135,7 +135,7 @@ def edit_request(request_id):
     # Render the edit form
     return render_template('edit_request.html', form=form, request_id=request_id, leave_approved_options = leave_approved_options, selected_approved_value = selected_approved_value, leave_type_options=leave_type_options, selected_leavetype_value=selected_leavetype_value)
 
-@app.route('/delete/<int:request_id>', methods=['GET', 'POST'])
+@app.route('/delete/<int:request_id>', methods=['POST'])
 def delete_request(request_id):
     # Retrieve the LeaveRequest object
     leave_request = LeaveRequest.query.filter_by(id = request_id).delete()
