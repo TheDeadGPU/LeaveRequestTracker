@@ -27,7 +27,7 @@
     <h2>Leave Requests:</h2>
     <ul>
         {% for request in leave_requests %}
-            <li>{{ request.name }} - {{ request.date }} ({{ request.leave_type }})</li>
+            <li>{{ request.name }} - {{ request.date }} ({{ request.leave_type }}) <button onclick="window.location='/edit/{{ request.id }}'">Edit</button><button onclick="">Email to HR</button><button onclick="window.location='/delete/{{ request.id }}'">Delete Leave Request</button></li>
         {% endfor %}
     </ul>
 </body>
