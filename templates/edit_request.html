@@ -11,6 +11,9 @@
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required value="{{ form.name.data }}"><br>
 
+        <label for="znumber">ZNumber:</label>
+        <input type="text" id="znumber" name="znumber"  required value="{{ form.znumber.data }}"><br>
+
         <label for="date">Date:</label>
         <input type="date" id="date" name="date" required value="{{ form.date.data }}"><br>
 
@@ -27,6 +30,9 @@
         </select>
         <br>
 
+        <label for="comments">Comments:</label>
+        <input type="text" id="comments" name="comments" value="{{ form.comments.data }}"><br>
+
         <label for="leave_approved">Leave Approved:</label>
         <select id="leave_approved" name="leave_approved">
             {% for option in leave_approved_options %}
@@ -35,6 +41,7 @@
                 </option>
             {% endfor %}
         </select>
+        <br>
 
         <button type="submit">Submit</button>
     </form>

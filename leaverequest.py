@@ -26,10 +26,12 @@ engine = db.create_engine('sqlite:///leave_requests1.db')
 class LeaveRequest(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
+    znumber = db.Column(db.String(100), nullable=False)
     date = db.Column(db.String(20), nullable=False)
     hours = db.Column(db.String(100), nullable=False)
     leave_type = db.Column(db.String(50), nullable=False)
     leave_approved = db.Column(db.String(50), nullable=False)
+    comments = db.Column(db.String(100), nullable=True)
 
 # Create the database tables
 # Create the database tables within the application context
@@ -45,13 +47,15 @@ def index():
         if request.method == 'POST':
             # Get form data
             name = request.form['name']
+            znumber = request.form['znumber']
             date = request.form['date']
             hours = request.form['hours']
             leave_type = request.form['leave_type']
             leave_approved = "Pending"
+            comments = request.form['comments']
 
             # Create a new LeaveRequest object
-            leave_request = LeaveRequest(name=name, date=date, hours=hours, leave_type=leave_type, leave_approved=leave_approved)
+            leave_request = LeaveRequest(name=name, znumber = znumber, date=date, hours=hours, leave_type=leave_type, leave_approved=leave_approved, comments = comments)
 
             # Add to the database
             db.session.add(leave_request)
@@ -69,10 +73,12 @@ def index():
 # Create an Edit Form using WTForms
 class EditForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
+    znumber = StringField('ZNumber', validators=[DataRequired()])
     date = StringField('Date', validators=[DataRequired()])
     hours = StringField('Hours', validators=[DataRequired()])
     leave_type = StringField('Leave Type', validators=[DataRequired()])
     leave_approved = StringField('Leave Approved', validators=[DataRequired()])
+    comments = StringField('Comments', validators=[DataRequired()])
 
 # Edit route
 @app.route('/edit/<int:request_id>', methods=['GET', 'POST'])
@@ -114,17 +120,21 @@ def edit_request(request_id):
     if request.method == 'POST':
         # Get form data
         name = request.form['name']
+        znumber = request.form['znumber']
         date = request.form['date']
         hours = request.form['hours']
         leave_type = request.form['leave_type']
         leave_approved = request.form['leave_approved']
+        comments = request.form['comments']
 
         # Update the existing LeaveRequest object
         leave_request.name = name
+        leave_request.znumber = znumber
         leave_request.date = date
         leave_request.hours = hours
         leave_request.leave_type = leave_type
         leave_request.leave_approved = leave_approved
+        leave_request.comments = comments
 
         # Commit the changes to the database
         db.session.commit()
