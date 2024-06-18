@@ -58,7 +58,7 @@ def index():
             db.session.commit()
 
             # Send an email
-            #send_email(name, date, leave_type)
+            #send_email(name, date, hours, leave_type)
 
             return redirect(url_for('index'))
 
@@ -143,17 +143,34 @@ def delete_request(request_id):
     return redirect(url_for('index'))
 
 
-def send_email(name, date, leave_type):
+def send_email(name, date, hours, leave_type):
     # Configure your email settings
     smtp_server = 'mail.stockton.edu'
     smtp_port = 25
     sender_email = 'test@stockton.edu'
-    sender_password = 'your_email_password'
     recipient_email = 'james.girard@stockton.edu'
 
     # Create the email message
-    subject = 'New Leave Request'
-    body = f"Name: {name}\nDate: {date}\nLeave Type: {leave_type}"
+    subject = 'Time Accrual/Leave Request Form Submission'
+    body = f""" 
+    A Time Accrual/Leave Request is awaiting your approval or denial. Click reply to respond to sender giving your authorization or rejection.
+
+    
+    Requestor's Name: {name}
+
+    Requestor's Z-Num: NULL
+
+
+    Date: {date}  Hrs: {hours}  Type: {leave_type}
+
+    
+    Num Hrs Paid: 
+
+    Num Hrs Unpaid: 
+
+    Comments:
+
+    """
     msg = MIMEText(body)
     msg['Subject'] = subject
     msg['From'] = sender_email
