@@ -31,7 +31,9 @@
                 {{ request.name }} - {{ request.date }} ({{ request.leave_type }})
                 <div style="display: inline-block;">
                     <button onclick="window.location='/edit/{{ request.id }}'">Edit</button>
-                    <button onclick="">Email to HR</button>
+                    <form action="/emailrequest/{{ request.id }}" method="post" style="display: inline;">
+                        <button type="submit">Email Leave Request</button>
+                    </form>
                     <form action="/delete/{{ request.id }}" method="post" style="display: inline;">
                         <button type="submit">Delete Leave Request</button>
                     </form>

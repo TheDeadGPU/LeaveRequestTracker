@@ -142,6 +142,13 @@ def delete_request(request_id):
     db.session.commit()
     return redirect(url_for('index'))
 
+@app.route('/emailrequest/<int:request_id>', methods=['POST'])
+def email_request(request_id):
+    # Retrieve the LeaveRequest object
+    leave_request = LeaveRequest.query.get_or_404(request_id)
+    send_email(leave_request.name, leave_request.date, leave_request.hours, leave_request.leave_type)
+    return redirect(url_for('index'))
+
 
 def send_email(name, date, hours, leave_type):
     # Configure your email settings
