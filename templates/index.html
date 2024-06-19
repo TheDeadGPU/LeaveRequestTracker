@@ -54,7 +54,10 @@
                 {% for request in leave_requests %}
                     <li>
                         <div class="leave-request-container">
-                            {{ request.name }} - {{ request.date }} ({{ request.leave_type }})
+                            {{ request.name }} <br>
+                            {{ request.date }} ({{ request.leave_type }}) <br>
+                            {{ request.comments}}
+
                         </div>
                         <div class="button-container">
                             <button id="edit-btn" onclick="window.location='/edit/{{ request.id }}'">Edit</button>
