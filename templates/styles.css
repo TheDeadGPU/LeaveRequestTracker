@@ -1,7 +1,9 @@
 /* styles.css */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: rgb(247, 250, 252);
+    background-image: url('./images/cool-background.png');
+    background-size: cover;
+    background-position: center;
   }
 
   .main-container {
@@ -14,17 +16,38 @@ body {
   .center-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
-    height: 800px;
-    width: 600px;
+    height: 805px;
+    width: 570px;
+    border: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+    margin: 40px;
+  }
+
+  .side-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 700px;
+    width: 500px;
     border: none;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     border-radius: 15px;
     background-color: #FFFFFF;
   }
 
-h1 {
+  .data-input {
+    font-family: 'Roboto', sans-serif;
+    color: rgb(86, 89, 102);
+  }
+
+  .leave-input {
+    padding-right: 83%;
+  }
+
+h1, h2 {
     margin-top: 6%;
     text-align: center;
     padding: 20px;
@@ -48,6 +71,7 @@ input, select {
     border-radius: 5px;
     transition: border-color 0.3s, box-shadow 0.3s;
     font-size: 15px;
+    font-family: 'Roboto', sans-serif;
 }
 
 input:focus, select:focus {
@@ -62,6 +86,27 @@ label {
     margin-left: 3px;
     font-size: 15px;
     color: rgb(86, 89, 102);
+}
+
+.comment-box {
+    padding-bottom: 50px;
+    margin-bottom: 30px;
+}
+
+.submit-button {
+    border-radius: 5px;
+    border: none;
+    width: 86%;
+    background-color: rgb(99, 91, 255);
+    color: white;
+    padding: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
 }
 
 

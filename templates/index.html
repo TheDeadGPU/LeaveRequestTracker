@@ -25,7 +25,7 @@
 
                 <div class="input-container">
                     <label for="date">Date</label>
-                    <input type="date" id="date" name="date" required><br>
+                    <input class="data-input" type="date" id="date" name="date" required><br>
                 </div>
 
                 <div class="input-container">
@@ -36,15 +36,20 @@
 
                 <div class="input-container">
                     <label for="leave_type">Leave Type</label>
-                    <select id="leave_type" name="leave_type"><option value="">-- Select --</option><option value="SIC">Sick Leave</option><option value="VAC">Vacation</option><option value="PER">Personal</option><option value="CTT">Comp Time Taken</option><option value="PLB">Paid Leave Bank</option><option value="JUR">Jury Duty</option><option value="UA">Union Activity</option><option value="FUR">Furlough (HR Approval Required)</option><option value="NOP">Unpaid Leave</option><option value="CTE">Comp Time Earned - Straight</option><option value="CTO">Comp Time Earned - 1.5x</option><option value="OT">Overtime Approval Request</option><option value="CSC">CSC Exam Leave (HR Approval Required)</option></select>
+                    <select class="leave-input" id="leave_type" name="leave_type"><option value="">-- Select --</option><option value="SIC">Sick Leave</option><option value="VAC">Vacation</option><option value="PER">Personal</option><option value="CTT">Comp Time Taken</option><option value="PLB">Paid Leave Bank</option><option value="JUR">Jury Duty</option><option value="UA">Union Activity</option><option value="FUR">Furlough (HR Approval Required)</option><option value="NOP">Unpaid Leave</option><option value="CTE">Comp Time Earned - Straight</option><option value="CTO">Comp Time Earned - 1.5x</option><option value="OT">Overtime Approval Request</option><option value="CSC">CSC Exam Leave (HR Approval Required)</option></select>
                     <br>
                 </div>
                 
                 <label for="comments">Comments</label>
-                <input type="text" id="comments" name="comments"><br>
-                <button type="submit">Submit</button>
+                <input class="comment-box" dtype="text" id="comments" name="comments"><br>
+                <button class="submit-button type="submit">Submit</button>
             </form>
-            <h2>Leave Requests:</h2>
+        </div>
+
+
+        <div class="side-container">
+            <h2>Current Leave Requests</h2>
+            
             <ul>
                 {% for request in leave_requests %}
                     <li>
