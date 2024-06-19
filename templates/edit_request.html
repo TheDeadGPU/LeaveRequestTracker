@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leave Request Edit Form</title>
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
     <div class="main-container">
-        <div class="center-container">
+        <div class="center-edit-container">
             <h1 class="edit-header">Leave Request Edit Form</h1>
             <form method="POST" action="/edit/{{request_id}}">
                 <label for="name">Name</label>
@@ -51,24 +50,5 @@
             </form>
         </div>
     </div>
-    <script>
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        if (urlParams.has('success')) {
-            Swal.fire({
-                toast: true,
-                position: "top-end",
-                icon: "success",
-                title: "Signed in successfully",
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-        }
-    </script>
 </body>
 </html>

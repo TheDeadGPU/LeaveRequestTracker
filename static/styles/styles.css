@@ -6,6 +6,11 @@ body {
     background-position: center;
   }
 
+  html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
   .main-container {
     display: flex;
     justify-content: center;
@@ -13,7 +18,7 @@ body {
     height: 98vh;
   }
   
-  .center-container {
+  .center-container, .center-edit-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,7 +41,50 @@ body {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     border-radius: 15px;
     background-color: #FFFFFF;
-  }
+}
+
+.side-container ul {
+  list-style-type: none; /* Remove default list styles */
+  width: 90%; /* Ensure full width */
+}
+
+.side-container li {
+  padding: 10px 20px; /* Padding for list items */
+  border-bottom: 1px solid #eee; /* Separator between items */
+  width: 70%; /* Ensure full width */
+  display: flex;
+  justify-content: space-between; /* Align buttons to the right */
+  align-items: center;
+}
+
+.side-container button {
+  background-color: #007BFF; /* Blue button background */
+  color: #FFFFFF; /* White text color */
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-left: 10px; /* Adjust margin between buttons */
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+  margin-bottom: 6px;
+}
+
+.side-container button:hover {
+  transform: translateY(-2px);
+}
+
+.center-edit-container{
+    animation: moveUp .3s ease-out forwards; /* Animation duration and easing */
+}
+
+@keyframes moveUp {
+    from {
+        transform: translateY(10%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
 
   .data-input {
     font-family: 'Roboto', sans-serif;

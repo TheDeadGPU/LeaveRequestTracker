@@ -64,10 +64,11 @@ def index():
             # Send an email
             #send_email(name, date, hours, leave_type)
 
-            return redirect(url_for('index', success=1))
+            return redirect(url_for('index'))
 
         # Retrieve all leave requests from the database
         leave_requests = LeaveRequest.query.all()
+        
         return render_template('index.html', leave_requests=leave_requests)
 
 # Create an Edit Form using WTForms
@@ -140,7 +141,7 @@ def edit_request(request_id):
         db.session.commit()
 
         # Redirect to the index page
-        return redirect(url_for('index', request_id=request_id, success=1))
+        return redirect(url_for('index'))
 
     # Render the edit form
     return render_template('edit_request.html', form=form, request_id=request_id, leave_approved_options = leave_approved_options, selected_approved_value = selected_approved_value, leave_type_options=leave_type_options, selected_leavetype_value=selected_leavetype_value)
