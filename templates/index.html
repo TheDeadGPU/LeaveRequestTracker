@@ -53,16 +53,16 @@
             <ul>
                 {% for request in leave_requests %}
                     <li>
-                        <div class="leave-requests">
+                        <div class="leave-request-container">
                             {{ request.name }} - {{ request.date }} ({{ request.leave_type }})
                         </div>
                         <div class="button-container">
-                            <button onclick="window.location='/edit/{{ request.id }}'">Edit</button>
+                            <button id="edit-btn" onclick="window.location='/edit/{{ request.id }}'">Edit</button>
                             <form action="/emailrequest/{{ request.id }}" method="post" style="display: inline;">
-                                <button type="submit">Email Leave Request</button>
+                                <button type="submit">Email</button>
                             </form>
                             <form action="/delete/{{ request.id }}" method="post" style="display: inline;">
-                                <button id="delete-button" type="submit">Delete Leave Request</button>
+                                <button id="delete-button" type="submit">Delete</button>
                             </form>
                         </div>
                     </li>

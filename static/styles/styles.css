@@ -39,6 +39,29 @@ body {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   border-radius: 15px;
   background-color: #FFFFFF;
+  overflow-y: auto;
+  overflow-x: hidden
+}
+
+/* Custom Scrollbar Styles */
+
+.side-container::-webkit-scrollbar {
+  width: 12px; 
+}
+
+.side-container::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  border-radius: 15px;
+}
+
+.side-container::-webkit-scrollbar-thumb {
+  background-color: #c0c0c0;
+  border-radius: 10px; 
+  border: 2px solid #f1f1f1; 
+}
+
+.side-container::-webkit-scrollbar-thumb:hover {
+  background-color: #7c7c7c; 
 }
 
 /* Animation */
@@ -125,6 +148,9 @@ label {
 .comment-box {
   padding-bottom: 50px;
   margin-bottom: 30px;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 /* Submit Button Styles */
@@ -159,9 +185,12 @@ label {
   align-items: center;
 }
 
-.side-container .leave-request {
-  flex-grow: 1;
-  margin-right: 10px;
+.leave-request-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex: 3 1 1;
+  width: 100%;
 }
 
 .side-container button {
@@ -170,10 +199,20 @@ label {
   border: none;
   padding: 8px 12px;
   cursor: pointer;
-  margin-left: 10px;
   border-radius: 5px;
   transition: transform 0.3s ease;
   margin-bottom: 6px;
+  margin-left: 10px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  height: 113px;
+  width: 70px;
+  
 }
 
 .side-container button:first-child {
@@ -186,4 +225,10 @@ label {
 
 #delete-button {
   background-color: #dc3545;
+  padding-right: 7.5px;
+}
+
+#edit-btn {
+  width: 56px;
+  margin-left: 42px;
 }
