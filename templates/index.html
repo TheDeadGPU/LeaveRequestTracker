@@ -53,8 +53,10 @@
             <ul>
                 {% for request in leave_requests %}
                     <li>
-                        {{ request.name }} - {{ request.date }} ({{ request.leave_type }})
-                        <div style="display: inline-block;">
+                        <div class="leave-requests">
+                            {{ request.name }} - {{ request.date }} ({{ request.leave_type }})
+                        </div>
+                        <div class="button-container">
                             <button onclick="window.location='/edit/{{ request.id }}'">Edit</button>
                             <form action="/emailrequest/{{ request.id }}" method="post" style="display: inline;">
                                 <button type="submit">Email Leave Request</button>
