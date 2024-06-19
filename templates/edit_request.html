@@ -4,46 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leave Request Edit Form</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
-    <h1>Leave Request Edit Form</h1>
-    <form method="POST" action="/edit/{{request_id}}">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required value="{{ form.name.data }}"><br>
+    <div class="main-container">
+        <div class="center-container">
+            <h1 class="edit-header">Leave Request Edit Form</h1>
+            <form method="POST" action="/edit/{{request_id}}">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required value="{{ form.name.data }}"><br>
 
-        <label for="znumber">ZNumber:</label>
-        <input type="text" id="znumber" name="znumber"  required value="{{ form.znumber.data }}"><br>
+                <label for="znumber">Z-Number</label>
+                <input type="text" id="znumber" name="znumber"  required value="{{ form.znumber.data }}"><br>
 
-        <label for="date">Date:</label>
-        <input type="date" id="date" name="date" required value="{{ form.date.data }}"><br>
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" required value="{{ form.date.data }}"><br>
 
-        <label for="hours">Hours:</label>
-        <input type="number" id="hours" name="hours" required oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 2);" value="{{ form.hours.data }}"><br>
+                <label for="hours">Hours</label>
+                <input type="number" id="hours" name="hours" required oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 2);" value="{{ form.hours.data }}"><br>
 
-        <label for="leave_type">Leave Type:</label>
-        <select id="leave_type" name="leave_type">
-            {% for option in leave_type_options %}
-                <option value="{{ option.value }}" {% if option.value == selected_leavetype_value %}selected{% endif %}>
-                    {{ option.label }}
-                </option>
-            {% endfor %}
-        </select>
-        <br>
+                <label for="leave_type">Leave Type</label>
+                <select class="leave-input" id="leave_type" name="leave_type">
+                    {% for option in leave_type_options %}
+                        <option value="{{ option.value }}" {% if option.value == selected_leavetype_value %}selected{% endif %}>
+                            {{ option.label }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <br>
 
-        <label for="comments">Comments:</label>
-        <input type="text" id="comments" name="comments" value="{{ form.comments.data }}"><br>
+                <label for="leave_approved">Leave Approved</label>
+                <select class="leave-input id="leave_approved" name="leave_approved">
+                    {% for option in leave_approved_options %}
+                        <option value="{{ option.value }}" {% if option.value == selected_approved_value %}selected{% endif %}>
+                            {{ option.label }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <br>
 
-        <label for="leave_approved">Leave Approved:</label>
-        <select id="leave_approved" name="leave_approved">
-            {% for option in leave_approved_options %}
-                <option value="{{ option.value }}" {% if option.value == selected_approved_value %}selected{% endif %}>
-                    {{ option.label }}
-                </option>
-            {% endfor %}
-        </select>
-        <br>
+                <label for="comments">Comments</label>
+                <input type="text" id="comments" name="comments" value="{{ form.comments.data }}"><br>
 
-        <button type="submit">Submit</button>
-    </form>
+                <button class="submit-button" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        if (urlParams.has('success')) {
+            Swal.fire({
+                toast: true,
+                position: "top-end",
+                icon: "success",
+                title: "Signed in successfully",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+        }
+    </script>
 </body>
 </html>
