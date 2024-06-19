@@ -39,28 +39,26 @@ body {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   border-radius: 15px;
   background-color: #FFFFFF;
-  overflow-y: auto;
-  overflow-x: hidden
 }
 
 /* Custom Scrollbar Styles */
 
-.side-container::-webkit-scrollbar {
+ul::-webkit-scrollbar {
   width: 12px; 
 }
 
-.side-container::-webkit-scrollbar-track {
+ul::-webkit-scrollbar-track {
   background: #f1f1f1; 
   border-radius: 15px;
 }
 
-.side-container::-webkit-scrollbar-thumb {
+ul::-webkit-scrollbar-thumb {
   background-color: #c0c0c0;
   border-radius: 10px; 
   border: 2px solid #f1f1f1; 
 }
 
-.side-container::-webkit-scrollbar-thumb:hover {
+ul::-webkit-scrollbar-thumb:hover {
   background-color: #7c7c7c; 
 }
 
@@ -174,12 +172,14 @@ label {
 .side-container ul {
   list-style-type: none;
   width: 90%;
+  overflow-y: auto;
+  overflow-x: hidden
 }
 
 .side-container li {
   padding: 10px 20px;
   border-bottom: 1px solid rgb(224, 225, 228);
-  width: 73%;
+  width: 80%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -187,11 +187,17 @@ label {
 
 .leave-request-container {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
-  flex: 3 1 1;
-  width: 100%;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  color: #333;
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 20px;
 }
+
 
 .side-container button {
   background-color: #007BFF;
@@ -212,6 +218,8 @@ label {
   align-items: start;
   height: 113px;
   width: 70px;
+  margin-right: 10px;
+  margin-top: 5px;
   
 }
 
