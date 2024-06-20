@@ -8,7 +8,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired
 import os
-
+from datetime import datetime
 
 
 # Flask constructor takes the name of 
@@ -19,7 +19,6 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///leave_requests1.db'
 db = SQLAlchemy(app)
 engine = db.create_engine('sqlite:///leave_requests1.db')
-
 
 
 # Define the LeaveRequest model
@@ -38,6 +37,46 @@ class LeaveRequest(db.Model):
 with app.app_context():
     db.create_all()
 
+def create_leaverequest(webrequest):
+    return update_leaverequest(webrequest, None)
+
+def update_leaverequest(webrequest,index):
+    # Get form data
+    name = webrequest.form['name']
+    znumber = webrequest.form['znumber']
+    date = webrequest.form['date']
+    hours = webrequest.form['hours']
+    leave_type = webrequest.form['leave_type']
+    leave_approved = "Pending"
+    comments = webrequest.form['comments']
+
+    # Format Date
+    date_object = datetime.strptime(date, "%Y-%m-%d")
+    date = date_object.strftime("%m/%d/%Y")
+
+    if(index == None):
+        # Create a new LeaveRequest object
+        leave_request = LeaveRequest(name=name, znumber = znumber, date=date, hours=hours, leave_type=leave_type, leave_approved=leave_approved, comments = comments)
+
+        # Add to the database
+        db.session.add(leave_request)
+        db.session.commit()
+        return leave_request
+    else:
+        # Update LeaveRequest at Specified Index
+        leave_request = LeaveRequest.query.get_or_404(index)
+        leave_request.name = name
+        leave_request.znumber = znumber
+        leave_request.date = date
+        leave_request.hours = hours
+        leave_request.leave_type = leave_type
+        leave_request.leave_approved = leave_approved
+        leave_request.comments = comments
+
+        # Commit the changes to the database
+        db.session.commit()
+        return leave_request
+    
 # The route() function of the Flask class is a decorator, 
 # which tells the application which URL should call 
 # the associated function.
@@ -45,25 +84,14 @@ with app.app_context():
 # ‘/’ URL is bound with hello_world() function.
 def index():
         if request.method == 'POST':
-            # Get form data
-            name = request.form['name']
-            znumber = request.form['znumber']
-            date = request.form['date']
-            hours = request.form['hours']
-            leave_type = request.form['leave_type']
-            leave_approved = "Pending"
-            comments = request.form['comments']
-
-            # Create a new LeaveRequest object
-            leave_request = LeaveRequest(name=name, znumber = znumber, date=date, hours=hours, leave_type=leave_type, leave_approved=leave_approved, comments = comments)
+            # Create Leave Request from Form Data
+            leave_request = create_leaverequest(request)
 
             # Add to the database
             db.session.add(leave_request)
             db.session.commit()
 
-            # Send an email
-            #send_email(name, date, hours, leave_type)
-
+            # Redirect User to the Index Page
             return redirect(url_for('index'))
 
         # Retrieve all leave requests from the database
@@ -89,17 +117,6 @@ def edit_request(request_id):
         {'value': 'Pending', 'label': 'Pending'},
         {'value': 'Approved', 'label': 'Approved'},
         {'value': 'Rejected', 'label': 'Rejected'}]
-
-
-    # Retrieve the LeaveRequest object
-    leave_request = LeaveRequest.query.get_or_404(request_id)
-    print(leave_request.leave_approved)
-    # Create a form with the existing data
-    form = EditForm(obj=leave_request)
-
-    #Set selected value
-    selected_approved_value = leave_request.leave_approved
-
     leave_type_options = [
         {'value': 'SIC', 'label': 'Sick Leave'},
         {'value': 'VAC', 'label': 'Vacation'},
@@ -114,37 +131,30 @@ def edit_request(request_id):
         {'value': 'CTO', 'label': 'Comp Time Earned - 1.5x'},
         {'value': 'OT', 'label': 'Overtime Approval Request'},
         {'value': 'CSC', 'label': 'CSC Exam Leave (HR Approval Required)'}]
-        
-    #Set selected value
+    
+    # Retrieve the LeaveRequest object
+    leave_request = LeaveRequest.query.get_or_404(request_id)
+
+    # Set selected value for leave_approved
+    selected_approved_value = leave_request.leave_approved
+
+    # Set selected value for leave_type
     selected_leavetype_value = leave_request.leave_type
 
+    # Create a form with the existing data
+    form = EditForm(obj=leave_request)
+
     if request.method == 'POST':
-        # Get form data
-        name = request.form['name']
-        znumber = request.form['znumber']
-        date = request.form['date']
-        hours = request.form['hours']
-        leave_type = request.form['leave_type']
-        leave_approved = request.form['leave_approved']
-        comments = request.form['comments']
-
-        # Update the existing LeaveRequest object
-        leave_request.name = name
-        leave_request.znumber = znumber
-        leave_request.date = date
-        leave_request.hours = hours
-        leave_request.leave_type = leave_type
-        leave_request.leave_approved = leave_approved
-        leave_request.comments = comments
-
-        # Commit the changes to the database
-        db.session.commit()
+        # Update the leaverequest with the new data
+        update_leaverequest(request,request_id)
 
         # Redirect to the index page
         return redirect(url_for('index'))
 
+    date_object = datetime.strptime(leave_request.date, "%m/%d/%Y")
+    iso_date_str = date_object.strftime("%Y-%m-%d")
     # Render the edit form
-    return render_template('edit_request.html', form=form, request_id=request_id, leave_approved_options = leave_approved_options, selected_approved_value = selected_approved_value, leave_type_options=leave_type_options, selected_leavetype_value=selected_leavetype_value)
+    return render_template('edit_request.html', form=form, request_id=request_id, leave_approved_options = leave_approved_options, selected_approved_value = selected_approved_value, leave_type_options=leave_type_options, selected_leavetype_value=selected_leavetype_value, iso_date_str=iso_date_str)
 
 @app.route('/delete/<int:request_id>', methods=['POST'])
 def delete_request(request_id):

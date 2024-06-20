@@ -18,7 +18,7 @@
                 <input type="text" id="znumber" name="znumber"  required value="{{ form.znumber.data }}"><br>
 
                 <label for="date">Date</label>
-                <input type="date" id="date" name="date" required value="{{ form.date.data }}"><br>
+                <input type="date" id="date" name="date" required value="{{ iso_date_str }}"><br>
 
                 <label for="hours">Hours</label>
                 <input type="number" id="hours" name="hours" required oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 2);" value="{{ form.hours.data }}"><br>
