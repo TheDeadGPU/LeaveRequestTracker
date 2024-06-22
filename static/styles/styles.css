@@ -7,6 +7,11 @@ body {
   overflow: hidden;
 }
 
+.welcome-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
 /* Layout Containers */
 .main-container {
   display: flex;
@@ -109,14 +114,14 @@ h2 {
 }
 
 /* Form and Input Container Styles */
-form {
+.leave-request-form {
   width: 80%;
   height: 50%;
   margin-right: 50%;
   margin-left: 60%;
 }
 
-input,
+.leave-request-form input,
 select {
   width: 80%;
   margin-bottom: 15px;
@@ -128,14 +133,14 @@ select {
   font-family: 'Roboto', sans-serif;
 }
 
-input:focus,
+.leave-request-form input:focus,
 select:focus {
   border-color: #4d90fe;
   box-shadow: 0 0 0 4px rgba(190, 216, 237, 0.7);
   outline: none;
 }
 
-label {
+.leave-request-form label {
   margin-bottom: 10px;
   display: block;
   margin-left: 3px;
@@ -143,7 +148,7 @@ label {
   color: rgb(86, 89, 102);
 }
 
-.comment-box {
+.leave-request-form .comment-box {
   padding-bottom: 50px;
   margin-bottom: 30px;
   white-space: normal;
@@ -152,7 +157,7 @@ label {
 }
 
 /* Submit Button Styles */
-.submit-button {
+.leave-request-form .submit-button {
   border-radius: 5px;
   border: none;
   width: 86%;

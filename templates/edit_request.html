@@ -10,7 +10,7 @@
     <div class="main-container">
         <div class="center-edit-container">
             <h1 class="edit-header">Leave Request Edit Form</h1>
-            <form method="POST" action="/edit/{{request_id}}">
+            <form class="leave-request-form" method="POST" action="/edit/{{request_id}}">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" required value="{{ form.name.data }}"><br>
 

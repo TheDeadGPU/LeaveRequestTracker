@@ -1,17 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leave Request Form</title>
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-</head>
-<body>
+{% extends "base.html" %}
+{% block title%} {{ title }} {% endblock %}
+{% block content%}
+
+<div class="container py-4 text-center">
+
+
+    {% if current_user.is_authenticated %}
+
+    <div class="welcome-header">
+        <h4>Welcome {{ current_user.username }}</h1><br>
+        <a href="{{url_for('logout')}}">Logout</a>
+    </div>
+    
     <div class="main-container">
         <div class="center-container">
             <h1>Leave Request Form</h1>
-            <form method="POST" action="/">
+            <form class="leave-request-form" method="POST" action="/">
 
                 <div class="input-container">
                     <label for="name">Name</label>
@@ -73,5 +77,11 @@
             </ul>
         </div>
     </div>
-</body>
-</html>
+
+    {% else %}
+
+    <a href="{{url_for('login')}}">Sign in/Sign Up</a>
+    
+    {% endif %}
+</div>
+{% endblock %}
