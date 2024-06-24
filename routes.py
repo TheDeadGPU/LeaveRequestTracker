@@ -48,6 +48,7 @@ def session_handler():
     session.permanent = True
     app.permanent_session_lifetime = timedelta(minutes=60)
 
+@login_required
 @app.route("/", methods=("GET", "POST"), strict_slashes=False)
 def index():
     # Retrieve all leave requests from the database
@@ -60,7 +61,11 @@ def index():
 
         # Redirect User to the Index Page
         return redirect(url_for('index'))
-    leave_requests = LeaveRequest.query.filter_by(user_id = current_user.id)
+    
+    try:
+        leave_requests = LeaveRequest.query.filter_by(user_id = current_user.id)
+    except:
+        leave_requests = LeaveRequest.query.all()
     return render_template("index.html",title="Home",leave_requests=leave_requests)
 
 
