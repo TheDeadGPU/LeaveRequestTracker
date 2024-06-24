@@ -10,6 +10,32 @@ body {
 .welcome-header {
   display: flex;
   justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: -58px;
+}
+
+.welcome-header h4 {
+  font-family: 'Roboto', sans-serif;
+  color: rgb(60, 65, 85);
+  font-size: 20px;
+  margin: 0; 
+  padding: 10px 20px; 
+  border-radius: 10px; 
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.welcome-header a {
+  font-family: 'Roboto', sans-serif;
+  text-decoration: none;
+  font-size: 19px;
+  color: rgb(99, 91, 255);
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.welcome-header a:hover {
+  color: rgb(60, 65, 85);
 }
 
 /* Layout Containers */
@@ -32,6 +58,10 @@ body {
   border-radius: 15px;
   background-color: #FFFFFF;
   margin: 40px;
+}
+
+.center-container {
+  width: 530px;
 }
 
 .side-container {
@@ -69,7 +99,7 @@ ul::-webkit-scrollbar-thumb:hover {
 
 /* Animation */
 .center-edit-container {
-  animation: moveUp .3s ease-out forwards;
+  animation: moveUp .2s ease-out forwards;
 }
 
 @keyframes moveUp {
@@ -104,6 +134,16 @@ h2 {
   color: rgb(60, 65, 85);
 }
 
+.center-container h1 {
+  font-size: 32px;
+  margin-top: 3%;
+}
+
+.side-container h2 {
+  font-size: 28px;
+  margin-top: 3%;
+}
+
 h2 {
   font-size: 27px;
   margin-bottom: 0;
@@ -117,8 +157,6 @@ h2 {
 .leave-request-form {
   width: 80%;
   height: 50%;
-  margin-right: 50%;
-  margin-left: 60%;
 }
 
 .leave-request-form input,
@@ -143,9 +181,10 @@ select:focus {
 .leave-request-form label {
   margin-bottom: 10px;
   display: block;
-  margin-left: 3px;
   font-size: 15px;
   color: rgb(86, 89, 102);
+  text-align: left;
+  margin-left: 11%;
 }
 
 .leave-request-form .comment-box {
@@ -208,7 +247,7 @@ select:focus {
   background-color: #007BFF;
   color: #FFFFFF;
   border: none;
-  padding: 8px 12px;
+  padding: 5px 9px;
   cursor: pointer;
   border-radius: 5px;
   transition: transform 0.3s ease;
@@ -220,12 +259,11 @@ select:focus {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: start;
+  align-items: flex-end;
   height: 113px;
   width: 70px;
-  margin-right: 10px;
   margin-top: 5px;
-  
+  font-size: 15px;
 }
 
 .side-container button:first-child {
