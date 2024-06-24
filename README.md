@@ -1,6 +1,6 @@
 # LeaveRequestTracker
 ## _An app that helps keep track of Stockton University Leave Requests_
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
+![Python](https://img.shields.io/badge/python-black?style=for-the-badge&logo=python&logoColor=white)![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
 
 LeaveRequestTracker is a Flask Application that keeps track of old school Stockton Univeristy leave requests.
 
