@@ -11,13 +11,13 @@ body {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  margin-bottom: -58px;
+  margin-bottom: -62px;
 }
 
 .welcome-header h4 {
   font-family: 'Roboto', sans-serif;
   color: rgb(60, 65, 85);
-  font-size: 20px;
+  font-size: 18px;
   margin: 0; 
   padding: 10px 20px; 
   border-radius: 10px; 
@@ -52,7 +52,7 @@ body {
   flex-direction: column;
   align-items: center;
   height: 805px;
-  width: 570px;
+  width: 550px;
   border: none;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   border-radius: 15px;
@@ -61,7 +61,11 @@ body {
 }
 
 .center-container {
-  width: 530px;
+  width: 510px;
+}
+
+.center-edit-container {
+  height: 845px;
 }
 
 .side-container {
@@ -69,7 +73,7 @@ body {
   flex-direction: column;
   align-items: center;
   height: 700px;
-  width: 500px;
+  width: 470px;
   border: none;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   border-radius: 15px;
@@ -120,7 +124,7 @@ ul::-webkit-scrollbar-thumb:hover {
 .leave-input {
   font-family: 'Roboto', sans-serif;
   color: #565966;
-  width: 85.5%;
+  width: 80%;
 }
 
 /* Heading Styles */
@@ -140,7 +144,7 @@ h2 {
 }
 
 .side-container h2 {
-  font-size: 28px;
+  font-size: 27px;
   margin-top: 3%;
 }
 
@@ -151,12 +155,18 @@ h2 {
 
 .edit-header {
   margin-top: 15px;
+  font-size: 30px;
 }
 
 /* Form and Input Container Styles */
 .leave-request-form {
-  width: 80%;
+  width: 90%;
   height: 50%;
+}
+
+#edit-form {
+  widtH: 80%;
+  text-align: center;
 }
 
 .leave-request-form input,
@@ -179,12 +189,24 @@ select:focus {
 }
 
 .leave-request-form label {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   display: block;
   font-size: 15px;
   color: rgb(86, 89, 102);
   text-align: left;
   margin-left: 11%;
+}
+
+.center-edit-container .leave-edit-label {
+  margin-top: 10px;
+}
+
+.center-edit-container .comment-label{
+  margin-top: 8px;
+}
+
+.leave-request-form .comment-label {
+  margin-top: 12px;
 }
 
 .leave-request-form .comment-box {
@@ -194,6 +216,9 @@ select:focus {
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
+
+
+
 
 /* Submit Button Styles */
 .leave-request-form .submit-button {
@@ -208,6 +233,10 @@ select:focus {
   transition: transform 0.3s ease;
 }
 
+.center-edit-container .submit-button {
+  margin-top: 8px;
+}
+
 .submit-button:hover {
   transform: translateY(-2px);
 }
@@ -215,15 +244,15 @@ select:focus {
 /* Side Container List and Item Styles */
 .side-container ul {
   list-style-type: none;
-  width: 90%;
   overflow-y: auto;
-  overflow-x: hidden
+  overflow-x: hidden;
+  width: 95%;
 }
 
 .side-container li {
   padding: 10px 20px;
   border-bottom: 1px solid rgb(224, 225, 228);
-  width: 80%;
+  width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -263,7 +292,7 @@ select:focus {
   height: 113px;
   width: 70px;
   margin-top: 5px;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .side-container button:first-child {
@@ -271,7 +300,7 @@ select:focus {
 }
 
 .side-container button:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 #delete-button {
@@ -283,3 +312,23 @@ select:focus {
   width: 56px;
   margin-left: 42px;
 }
+
+#email-btn {
+  width: 56px;
+}
+
+
+/* Login Page */
+
+.col-lg-5.col-md-6.m-auto.card.p-4 {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  text-align: center;
+  width: 30%;
+
+}
+
+.col-lg-5.col-md-6.m-auto.card.p-4 h1,
+.col-lg-5.col-md-6.m-auto.card.p-4 h2 {
+  width: 100%;
+}
+
