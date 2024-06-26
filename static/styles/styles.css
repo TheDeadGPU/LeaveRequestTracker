@@ -29,7 +29,7 @@ body {
   font-family: 'Roboto', sans-serif;
   text-decoration: none;
   font-size: 19px;
-  color: rgb(99, 91, 255);
+  color: #007BFF;
   font-weight: bold;
   margin-top: 8px;
 }
@@ -225,7 +225,7 @@ select:focus {
   border-radius: 5px;
   border: none;
   width: 86%;
-  background-color: rgb(99, 91, 255);
+  background-color: #007BFF;
   color: white;
   padding: 15px;
   font-size: 16px;
@@ -331,4 +331,10 @@ select:focus {
 .col-lg-5.col-md-6.m-auto.card.p-4 h2 {
   width: 100%;
 }
+
+.col-lg-5.col-md-6.m-auto.card.p-4 a:hover {
+  text-decoration: none;
+}
+
+
 
