@@ -1,5 +1,6 @@
 from wtforms import (
     StringField,
+    SubmitField,
     PasswordField,
     BooleanField,
     IntegerField,
@@ -12,7 +13,7 @@ from wtforms.validators import InputRequired, Length, EqualTo, Email, Regexp ,Op
 import email_validator
 from flask_login import current_user
 from wtforms import ValidationError,validators
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, Email
 from models import User
 
 
@@ -55,6 +56,17 @@ class register_form(FlaskForm):
     def validate_uname(self, uname):
         if User.query.filter_by(username=username.data).first():
             raise ValidationError("Username already taken!")
+        
+class ResetPasswordRequestForm(FlaskForm):
+    email = StringField("Email", validators=[DataRequired(), Email()])
+    submit = SubmitField("Request Password Reset")
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField("New Password", validators=[DataRequired()])
+    password2 = PasswordField(
+        "Repeat Password", validators=[DataRequired(), EqualTo("password")]
+    )
+    submit = SubmitField("Confirm Password Reset")
         
     # Create an Edit Form using WTForms
 class leave_request_edit_form(FlaskForm):

@@ -1,5 +1,6 @@
 from app import db
 from flask_login import UserMixin
+from itsdangerous import URLSafeTimedSerializer, BadSignature, SignatureExpired
 
 class User(UserMixin, db.Model):
     __tablename__ = "user"
@@ -11,6 +12,32 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.username
+    def generate_reset_password_token(self,app):
+        serializer = URLSafeTimedSerializer(app.config["SECRET_KEY"])
+
+        return serializer.dumps(self.email, salt=self.pwd)
+
+    @staticmethod
+    def validate_reset_password_token(token: str, user_id: int, app):
+        user = db.session.get(User, user_id)
+
+        if user is None:
+            return None
+
+        serializer = URLSafeTimedSerializer(app.config["SECRET_KEY"])
+        try:
+            token_user_email = serializer.loads(
+                token,
+                max_age=app.config["RESET_PASS_TOKEN_MAX_AGE"],
+                salt=user.password_hash,
+            )
+        except (BadSignature, SignatureExpired):
+            return None
+
+        if token_user_email != user.email:
+            return None
+
+        return user
     
 class LeaveRequest(db.Model):
     id = db.Column(db.Integer, primary_key=True)

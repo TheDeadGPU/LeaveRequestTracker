@@ -30,12 +30,12 @@ from flask_login import (
     login_required,
 )
 
-from functions import create_leaverequest, update_leaverequest, send_email
+from functions import create_leaverequest, update_leaverequest, send_email,send_reset_password_email
 
 from app import create_app,db,login_manager,bcrypt
 from models import User, LeaveRequest
-from forms import login_form,register_form, leave_request_edit_form
-
+from forms import login_form,register_form, leave_request_edit_form, ResetPasswordRequestForm
+from sqlalchemy import select
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -144,6 +144,50 @@ def register():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+@app.route("/reset_password", methods=["GET", "POST"])
+def reset_password_request():
+    if(current_user.is_authenticated):
+        return redirect(url_for("index"))
+    
+    form = ResetPasswordRequestForm()
+    if form.validate_on_submit():
+        user_select = select(User).where(User.email == form.email.data)
+        user = db.session.scalar(user_select)
+
+        if user:
+            send_reset_password_email(user,app)
+
+        flash("Instructions for resetting your password were sent to your email address,"
+              "if it exists in our system.")
+        
+        return redirect(url_for("reset_password_request"))
+    
+    return render_template("reset_password_request.html", title = "Password Reset", form = form)
+
+@app.route("/reset_password/<token>/<int:user_id>", methods=["GET", "POST"])
+def reset_password(token, user_id):
+    if current_user.is_authenticated:
+        return redirect(url_for("index"))
+
+    user = User.validate_reset_password_token(token, user_id)
+    if not user:
+        return render_template(
+            "reset_password_error.html", title="Reset Password error"
+        )
+
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        user.set_password(form.password.data)
+        db.session.commit()
+
+        return render_template(
+            "reset_password_success.html", title="Reset Password success"
+        )
+
+    return render_template(
+        "reset_password.html", title="Reset Password", form=form
+    )
 
 @app.route('/edit/<int:request_id>', methods=['GET','POST'])
 def edit_leaverequest(request_id):
