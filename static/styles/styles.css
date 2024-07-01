@@ -146,6 +146,7 @@ h2 {
 .side-container h2 {
   font-size: 27px;
   margin-top: 3%;
+  margin-bottom: 5px;
 }
 
 h2 {
@@ -217,7 +218,9 @@ select:focus {
   word-wrap: break-word;
 }
 
-
+.btn.btn-primary {
+  margin-bottom: 12px;
+}
 
 
 /* Submit Button Styles */
@@ -239,6 +242,10 @@ select:focus {
 
 .submit-button:hover {
   transform: translateY(-2px);
+}
+
+.badge.text-bg-secondary {
+  background-color: #6c757d;
 }
 
 /* Side Container List and Item Styles */
@@ -272,7 +279,7 @@ select:focus {
 }
 
 
-.side-container button {
+#edit-btn, #email-btn, #delete-button  {
   background-color: #007BFF;
   color: #FFFFFF;
   border: none;
@@ -299,7 +306,7 @@ select:focus {
   margin-left: 0;
 }
 
-.side-container button:hover {
+#edit-btn:hover, #email-btn:hover, #delete-button:hover {
   transform: translateY(-1px);
 }
 
