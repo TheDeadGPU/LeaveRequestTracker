@@ -64,6 +64,7 @@ def index():
     
     try:
         leave_requests = LeaveRequest.query.filter_by(user_id = current_user.id)
+        print(leave_requests.count())
     except:
         leave_requests = LeaveRequest.query.all()
     return render_template("index.html",title="Home",leave_requests=leave_requests)
