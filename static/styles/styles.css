@@ -80,6 +80,108 @@ body {
   background-color: #FFFFFF;
 }
 
+.main-reset-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 98vh;
+  flex-direction: column;
+}
+
+.reset-container {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  background-color: #FFFFFF;
+  max-width: 530px;
+  max-height: 410px; 
+}
+
+.reset-container h1 {
+  font-size: 28px;
+  color: rgb(60, 66, 87);
+  font-weight: 500;
+  margin-top: 25px;
+  margin-bottom: 0px;
+}
+
+.reset-container form {
+  width: 100%;
+}
+
+.reset-container p{
+  width: 70%;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgb(60, 66, 87);
+  text-align: center
+}
+
+.reset-container form p {
+  width: 100%;
+}
+
+.main-reset-container p:last-child {
+  margin-top: 25px;
+}
+
+.reset-container input,
+select {
+  width: 80%;
+  margin-bottom: 0px;
+  padding: 10px 16px;
+  border: 1px solid rgb(224, 225, 228);
+  border-radius: 5px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  font-size: 15px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.reset-container input:focus,
+select:focus {
+  border-color: #4d90fe;
+  box-shadow: 0 0 0 4px rgba(190, 216, 237, 0.7);
+  outline: none;
+}
+
+.reset-container label {
+  display: block;
+  font-size: 15px;
+  color: rgb(60, 66, 87);
+  text-align: left;
+  margin-left: 10.2%;
+  cursor: pointer;
+  font-weight: 500;
+  position: relative;
+  top: 10px;
+}
+
+.main-reset-container a {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  margin-bottom: 30px;
+}
+
+.reset-container a:hover {
+  color: rgb(9, 12, 22);
+}
+
+.reset-container input:nth-Child(1) {
+  border-radius: 5px;
+  border: none;
+  width: 80%;
+  background-color: #007BFF;
+  color: white;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  margin-bottom: 0;
+}
+
 /* Custom Scrollbar Styles */
 
 ul::-webkit-scrollbar {
