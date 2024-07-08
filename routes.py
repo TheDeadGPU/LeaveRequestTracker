@@ -146,7 +146,7 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
-@app.route("/reset_password", methods=["GET", "POST"])
+@app.route("/reset_password/", methods=["GET", "POST"])
 def reset_password_request():
     if(current_user.is_authenticated):
         return redirect(url_for("index"))
