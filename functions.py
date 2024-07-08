@@ -3,6 +3,7 @@ from flask_mailman import EmailMessage
 from models import LeaveRequest
 from datetime import datetime
 from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 import smtplib
 from strings import (
     reset_password_email_html_content
@@ -98,8 +99,8 @@ def send_reset_password_email(user,app):
     # Configure your email settings
     smtp_server = 'mail.stockton.edu'
     smtp_port = 25
-    sender_email = 'test@stockton.edu'
-    recipient_email = 'james.girard@stockton.edu'
+    sender_email = 'leaverequestapp@stockton.edu'
+    recipient_email = user.email
     reset_password_url = url_for(
         "reset_password",
         token=user.generate_reset_password_token(app),
@@ -107,16 +108,23 @@ def send_reset_password_email(user,app):
         _external=True,
     )
 
+    message = MIMEMultipart("alternative")
+    message["Subject"] = "Password Reset"
+    message["From"] = sender_email
+    message["To"] = recipient_email
+
     email_body = render_template_string(
         reset_password_email_html_content, reset_password_url=reset_password_url
     )
+    email_body = MIMEText(email_body, "html")
+    message.attach(email_body)
     # Connect to the SMTP server and send the email
     try:
         with smtplib.SMTP(smtp_server, smtp_port) as server:
             # Uncomment the following lines if needed:
             # server.starttls()
             # server.login(sender_email, sender_password)
-            server.sendmail(sender_email, [recipient_email], email_body)
+            server.sendmail(sender_email, [recipient_email], message.as_string())
             print("Email sent successfully!")
     except smtplib.SMTPException as e:
         print(f"Error sending email: {e}")
