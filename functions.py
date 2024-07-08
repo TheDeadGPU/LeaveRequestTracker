@@ -88,7 +88,7 @@ def send_email(name, date, hours, leave_type):
             # Uncomment the following lines if needed:
             # server.starttls()
             # server.login(sender_email, sender_password)
-            server.sendmail(sender_email, [recipient_email], msg.as_string())
+            server.sendmail(sender_email, [recipient_email], msg)
             print("Email sent successfully!")
     except smtplib.SMTPException as e:
         print(f"Error sending email: {e}")
@@ -116,7 +116,7 @@ def send_reset_password_email(user,app):
             # Uncomment the following lines if needed:
             # server.starttls()
             # server.login(sender_email, sender_password)
-            server.sendmail(sender_email, [recipient_email], email_body.as_string())
+            server.sendmail(sender_email, [recipient_email], email_body)
             print("Email sent successfully!")
     except smtplib.SMTPException as e:
         print(f"Error sending email: {e}")

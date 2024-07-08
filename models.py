@@ -1,6 +1,8 @@
 from app import db
 from flask_login import UserMixin
 from itsdangerous import URLSafeTimedSerializer, BadSignature, SignatureExpired
+from flask_bcrypt import Bcrypt,generate_password_hash, check_password_hash
+from app import create_app,db,login_manager,bcrypt
 
 class User(UserMixin, db.Model):
     __tablename__ = "user"
@@ -29,7 +31,7 @@ class User(UserMixin, db.Model):
             token_user_email = serializer.loads(
                 token,
                 max_age=app.config["RESET_PASS_TOKEN_MAX_AGE"],
-                salt=user.password_hash,
+                salt=user.pwd,
             )
         except (BadSignature, SignatureExpired):
             return None
@@ -38,6 +40,9 @@ class User(UserMixin, db.Model):
             return None
 
         return user
+    
+    def set_password(self,password):
+        self.pwd = bcrypt.generate_password_hash(password)
     
 class LeaveRequest(db.Model):
     id = db.Column(db.Integer, primary_key=True)

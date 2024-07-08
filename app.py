@@ -26,6 +26,7 @@ def create_app():
     app.secret_key = 'secret-key'
     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///database.db"
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+    app.config['RESET_PASS_TOKEN_MAX_AGE'] = 3600
 
     login_manager.init_app(app)
     db.init_app(app)

@@ -34,7 +34,7 @@ from functions import create_leaverequest, update_leaverequest, send_email,send_
 
 from app import create_app,db,login_manager,bcrypt
 from models import User, LeaveRequest
-from forms import login_form,register_form, leave_request_edit_form, ResetPasswordRequestForm
+from forms import login_form,register_form, leave_request_edit_form, ResetPasswordRequestForm, ResetPasswordForm
 from sqlalchemy import select
 
 @login_manager.user_loader
@@ -171,7 +171,8 @@ def reset_password(token, user_id):
     if current_user.is_authenticated:
         return redirect(url_for("index"))
 
-    user = User.validate_reset_password_token(token, user_id)
+    user = User.validate_reset_password_token(token, user_id,app)
+    print(user)
     if not user:
         return render_template(
             "reset_password_error.html", title="Reset Password error"
