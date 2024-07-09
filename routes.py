@@ -165,7 +165,7 @@ def reset_password_request():
             send_reset_password_email(user,app)
 
         flash("Instructions for resetting your password were sent to your email address,"
-              "if it exists in our system.")
+              " if it exists in our system.")
         
         return redirect(url_for("reset_password_request"))
     

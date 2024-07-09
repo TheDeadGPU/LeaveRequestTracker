@@ -82,7 +82,7 @@ body {
 
 .main-reset-container {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   height: 98vh;
   flex-direction: column;
@@ -90,25 +90,30 @@ body {
 
 .reset-container {
   display: flex;
-  flex: 1;
   align-items: center;
   flex-direction: column;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   background-color: #FFFFFF;
-  max-width: 530px;
-  max-height: 410px; 
+  width: 530px;
+  margin-top: 80px;
+  padding: 8px;
+  border-radius: 5px;
+  min-height: 410px;
 }
 
 .reset-container h1 {
-  font-size: 28px;
+  font-size: 26px;
   color: rgb(60, 66, 87);
   font-weight: 500;
-  margin-top: 25px;
+  margin-top: 35px;
   margin-bottom: 0px;
+  text-align: left;
+  position: relative;
+  right: 36px;
 }
 
 .reset-container form {
-  width: 100%;
+  width: 95%;
 }
 
 .reset-container p{
@@ -116,15 +121,33 @@ body {
   font-size: 14px;
   font-weight: 400;
   color: rgb(60, 66, 87);
-  text-align: center
+  text-align: center;
+}
+
+.reset-container > p {
+  text-align: left;
+  position: relative;
+  right: 15px;
+  margin-bottom: 10px;
+}
+
+.reset-container .successMessage {
+  width: 60%;
 }
 
 .reset-container form p {
   width: 100%;
 }
 
+
 .main-reset-container p:last-child {
-  margin-top: 25px;
+  margin-top: 20px;
+}
+
+.accountP {
+  position: relative;
+  right: 145px;
+  font-size: 15px;
 }
 
 .reset-container input,
@@ -162,7 +185,6 @@ select:focus {
   text-decoration: none;
   font-weight: 500;
   font-size: 15px;
-  margin-bottom: 30px;
 }
 
 .reset-container a:hover {
