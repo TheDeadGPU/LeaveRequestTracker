@@ -27,6 +27,12 @@
                 
                 {% if request.path == '/register/' %}
                 <div class="form-group mb-3">
+                    {{ form.first_name(class_="form-control",placeholder="First Name")}}
+                </div>
+                <div class="form-group mb-3">
+                    {{ form.last_name(class_="form-control",placeholder="Last Name")}}
+                </div>
+                <div class="form-group mb-3">
                     {{ form.username(class_="form-control",placeholder="Username")}}
                 </div>
                 {% for error in form.username.errors %}

@@ -8,9 +8,12 @@ class User(UserMixin, db.Model):
     __tablename__ = "user"
     
     id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(60), unique=False, nullable=False)
+    last_name = db.Column(db.String(60), unique=False, nullable=False)
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     pwd = db.Column(db.String(300), nullable=False, unique=True)
+    enabled = db.Column(db.Boolean, nullable=False)
 
     def __repr__(self):
         return '<User %r>' % self.username

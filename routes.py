@@ -100,14 +100,19 @@ def register():
     form = register_form()
     if form.validate_on_submit():
         try:
+            first_name = form.first_name.data
+            last_name = form.last_name.data
             email = form.email.data
             pwd = form.pwd.data
             username = form.username.data
             
             newuser = User(
+                first_name = first_name,
+                last_name = last_name,
                 username=username,
                 email=email,
                 pwd=bcrypt.generate_password_hash(pwd),
+                enabled = True,
             )
     
             db.session.add(newuser)
@@ -254,7 +259,7 @@ def email_request(request_id):
             leave_request.email_sent = True
             db.session.commit()
         except:
-            print("Error sending email. Either the server couldn't be reach or isn't available.")
+            print("Error sending email. Either the server couldn't be reached or isn't available.")
     return redirect(url_for('index'))
 
 
