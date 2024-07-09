@@ -20,7 +20,7 @@ def update_leaverequest(webrequest,index,db, user_id):
     date = webrequest.form['date']
     hours = webrequest.form['hours']
     leave_type = webrequest.form['leave_type']
-    leave_approved = "Pending"
+    leave_approved = webrequest.form['leave_approved']
     comments = webrequest.form['comments']
 
     # Format Date
@@ -29,6 +29,7 @@ def update_leaverequest(webrequest,index,db, user_id):
 
     if(index == None):
         # Create a new LeaveRequest object
+        leave_approved = "Pending"
         leave_request = LeaveRequest(name=name, user_id=user_id, znumber = znumber, date=date, hours=hours, leave_type=leave_type, leave_approved=leave_approved, comments = comments)
 
         # Add to the database
