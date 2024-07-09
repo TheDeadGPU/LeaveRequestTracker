@@ -69,7 +69,9 @@
                         {% elif request.leave_approved == 'Rejected' %}
                             ❌
                         {% endif %}
-                        
+                        {% if request.email_sent == True %}
+                            📧
+                        {% endif %}
                         <div class="leave-request-container">
                             {{ request.name }} <br>
                             {{ request.date }} ({{ request.leave_type }}) <br>

@@ -54,3 +54,4 @@ class LeaveRequest(db.Model):
     leave_type = db.Column(db.String(50), nullable=False)
     leave_approved = db.Column(db.String(50), nullable=False)
     comments = db.Column(db.String(100), nullable=True)
+    email_sent = db.Column(db.Boolean, nullable=True)

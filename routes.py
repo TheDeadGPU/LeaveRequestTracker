@@ -249,7 +249,12 @@ def email_request(request_id):
     # Retrieve the LeaveRequest object
     leave_request = LeaveRequest.query.get_or_404(request_id)
     if current_user.id == leave_request.user_id:
-        send_email(leave_request.name, leave_request.date, leave_request.hours, leave_request.leave_type)
+        try:
+            send_email(leave_request.name, leave_request.date, leave_request.hours, leave_request.leave_type)
+            leave_request.email_sent = True
+            db.session.commit()
+        except:
+            print("Error sending email. Either the server couldn't be reach or isn't available.")
     return redirect(url_for('index'))
 
 
