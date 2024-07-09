@@ -60,7 +60,16 @@
             
             <ul>
                 {% for request in leave_requests %}
+                
                     <li>
+                        {% if request.leave_approved == 'Pending' %}
+                            ⌛
+                        {% elif request.leave_approved == 'Approved' %}
+                            ✅
+                        {% elif request.leave_approved == 'Rejected' %}
+                            ❌
+                        {% endif %}
+                        
                         <div class="leave-request-container">
                             {{ request.name }} <br>
                             {{ request.date }} ({{ request.leave_type }}) <br>
@@ -83,9 +92,7 @@
     </div>
 
     {% else %}
-
-    <a href="{{url_for('login')}}">Sign in/Sign Up</a>
-    <a href="{{url_for('reset_password_request')}}">Forgot Password</a>
+    <meta http-equiv='refresh' content='0; URL={{url_for('login')}}'>
     
     {% endif %}
 </div>
