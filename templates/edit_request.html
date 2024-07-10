@@ -41,7 +41,42 @@
             <input type="text" id="comments" name="comments" value="{{ form.comments.data }}"><br>
 
             <button class="submit-button" type="submit">Submit</button>
+            <p><a href="{{url_for('index')}}">Return Home</a></p>
         </form>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const inputElements = [
+            document.getElementById("name"),
+            document.getElementById("znumber"),
+            document.getElementById("date"),
+            document.getElementById("hours"),
+            document.getElementById("leave_type"),
+            document.querySelector(".leave-input")
+        ];
+
+        console
+
+        const submitBtn = document.querySelector('.submit-button');
+
+        function validateForm() {
+            let allFilled = inputElements.every(input => input.value.trim() !=='');
+            if (allFilled) {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('disabled');
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.classList.add('disabled');
+            }
+        }
+
+        inputElements.forEach(input => input.addEventListener('input', validateForm));
+
+        validateForm();
+    });
+
+</script>
 {% endblock %}

@@ -65,7 +65,7 @@ body {
 }
 
 .center-edit-container {
-  height: 845px;
+  height: 880px;
 }
 
 .side-container {
@@ -88,7 +88,7 @@ body {
   flex-direction: column;
 }
 
-.reset-container {
+.reset-container, .reset-container-success {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -99,6 +99,25 @@ body {
   padding: 6px;
   border-radius: 5px;
   min-height: 410px;
+}
+
+.reset-container-success {
+  text-align: left;
+  min-height: 243px;
+  min-width: 500px;
+  padding: 18px;
+  margin-top: 0px;
+  position: relative;
+  bottom: 179px;
+}
+
+.reset-container-success h1 {
+  font-size: 24px;
+  text-align: left;
+  position: relative;
+  right: 40px;
+  margin-top: 13px;
+  margin-bottom: 13px;
 }
 
 .change-pass-form {
@@ -197,14 +216,18 @@ select:focus {
   top: 10px;
 }
 
-.main-reset-container a {
+.main-reset-container a, .center-edit-container a {
   text-decoration: none;
   font-weight: 500;
   font-size: 15px;
 }
 
-.reset-container a:hover {
+.reset-container a:hover, .center-edit-container a:hover {
   color: rgb(9, 12, 22);
+}
+
+.center-edit-container p {
+  margin-top: 20px;
 }
 
 .reset-container input:nth-Child(1) {
@@ -231,7 +254,7 @@ select:focus {
 
 .disabled {
   background-color: #cccccc !important;
-  cursor: not-allowed !important;
+  cursor: auto !important;
 }
 
 /* Custom Scrollbar Styles */
@@ -378,24 +401,21 @@ select:focus {
 
 
 /* Submit Button Styles */
-.leave-request-form .submit-button {
+.leave-request-form .submit-button, .reset-container-success button {
   border-radius: 5px;
   border: none;
-  width: 86%;
+  width: 80%;
   background-color: #007BFF;
   color: white;
   padding: 15px;
   font-size: 16px;
   cursor: pointer;
   transition: transform 0.3s ease;
+  font-weight: 500;
 }
 
 .center-edit-container .submit-button {
   margin-top: 8px;
-}
-
-.submit-button:hover {
-  transform: translateY(-2px);
 }
 
 .badge.text-bg-secondary {
@@ -440,9 +460,13 @@ select:focus {
   padding: 5px 9px;
   cursor: pointer;
   border-radius: 5px;
-  transition: transform 0.3s ease;
+  transition: background-color 0.3s ease;
   margin-bottom: 6px;
   margin-left: 10px;
+}
+
+#edit-btn:hover, #email-btn:hover {
+  background-color: #0056B3;
 }
 
 .button-container {
@@ -460,13 +484,13 @@ select:focus {
   margin-left: 0;
 }
 
-#edit-btn:hover, #email-btn:hover, #delete-button:hover {
-  transform: translateY(-1px);
-}
-
 #delete-button {
   background-color: #dc3545;
   padding-right: 7.5px;
+}
+
+#delete-button:hover {
+  background-color: #c9303e;
 }
 
 #edit-btn {
