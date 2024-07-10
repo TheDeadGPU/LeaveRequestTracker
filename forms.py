@@ -66,9 +66,9 @@ class ResetPasswordRequestForm(FlaskForm):
 class ResetPasswordForm(FlaskForm):
     password = PasswordField("New Password", validators=[DataRequired()])
     password2 = PasswordField(
-        "Repeat Password", validators=[DataRequired(), EqualTo("password")]
+        "Confirm Password", validators=[DataRequired(), EqualTo("password")]
     )
-    submit = SubmitField("Confirm Password Reset")
+    submit = SubmitField("Continue")
         
     # Create an Edit Form using WTForms
 class leave_request_edit_form(FlaskForm):

@@ -92,14 +92,20 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   background-color: #FFFFFF;
   width: 530px;
   margin-top: 80px;
-  padding: 8px;
+  padding: 6px;
   border-radius: 5px;
   min-height: 410px;
 }
+
+.change-pass-form {
+  margin-bottom: 30px;
+  margin-top: -10px;
+}
+
 
 .reset-container h1 {
   font-size: 26px;
@@ -110,6 +116,16 @@ body {
   text-align: left;
   position: relative;
   right: 36px;
+}
+
+.change-pass-header {
+  position: relative;
+  left: 29px;
+  font-size: 24px;
+}
+
+.change-pass-form p:nth-child(5) input {
+  margin-top: 24px;
 }
 
 .reset-container form {
@@ -202,6 +218,20 @@ select:focus {
   cursor: pointer;
   transition: transform 0.3s ease;
   margin-bottom: 0;
+}
+
+.col-lg-5.col-md-6.m-auto.card.p-4 a {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.col-lg-5.col-md-6.m-auto.card.p-4 a:hover {
+  color: rgb(9, 12, 22);
+}
+
+.disabled {
+  background-color: #cccccc !important;
+  cursor: not-allowed !important;
 }
 
 /* Custom Scrollbar Styles */
