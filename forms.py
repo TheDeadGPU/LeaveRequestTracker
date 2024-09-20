@@ -50,10 +50,11 @@ class register_form(FlaskForm):
         ]
     )
 
-
     def validate_email(self, email):
         if User.query.filter_by(email=email.data).first():
             raise ValidationError("Email already registered!")
+        if not email.data.endswith('@stockton.edu'):
+            raise ValidationError('Email must be from stockton.edu')
 
     def validate_uname(self, uname):
         if User.query.filter_by(username=username.data).first():
